@@ -1,0 +1,48 @@
+<table *ngIf="profilesData?.length" [dataSource]="profilesData" mat-table class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="profilePic">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-icon aria-hidden="false" aria-label="CompareArrows icon">compare_arrows</mat-icon>
+    </th>
+    <td mat-cell *matCellDef="let element"> <img [src]="element.photo" alt="Profile Pic"> </td>
+  </ng-container>
+
+  <!-- Local ID -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Local ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.localid}} </td>
+  </ng-container>
+
+  <!-- E-mail Address -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> E-mail Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.first_name + ' '+ element.last_name}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef> Address </th>
+    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="modified">
+    <th mat-header-cell *matHeaderCellDef> Modified </th>
+    <td mat-cell *matCellDef="let element"> {{element.modified}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

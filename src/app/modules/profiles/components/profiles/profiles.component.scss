@@ -1,0 +1,51 @@
+header {
+  background: #03a9f4;
+  color: #fff;
+  padding: 42px 24px 16px;
+
+  h1 {
+    padding: 16px 0;
+    font-size: 42px;
+  }
+
+  .search-container {
+    display: flex;
+    column-gap: 12px;
+
+    .input-container {
+      position: relative;
+      width: 75%;
+      height: 52px;
+      display: flex;
+
+      mat-icon {
+        position: absolute;
+        color: #000;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 8px;
+      }
+
+      input {
+        width: 100%;
+        outline: none;
+        height: 100%;
+        padding-left: 42px;
+
+      }
+    }
+
+    button {
+      background-color: #2076a2;
+      color: #fff;
+      border: none;
+      height: 52px;
+      width: 68px;
+      cursor: pointer;
+    }
+  }
+}
+
+.table-container {
+  padding: 24px;
+}

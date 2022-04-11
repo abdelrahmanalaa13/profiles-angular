@@ -1,0 +1,18 @@
+<header>
+  <h1>Profiles</h1>
+  <div class="search-container">
+    <div class="input-container">
+      <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
+      <input type="text" placeholder="Search Profiles" id="search">
+    </div>
+    <div class="actions">
+      <button type="submit" id="search-button">
+        <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="table-container">
+  <app-profiles-table [profilesData]="profilesList"></app-profiles-table>
+</div>
