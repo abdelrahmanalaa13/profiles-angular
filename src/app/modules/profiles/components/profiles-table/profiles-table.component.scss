@@ -8,10 +8,6 @@ table {
 
   width: 100%;
 
-  .mat-row {
-    cursor: pointer;
-  }
-
   th {
     font-weight: 500;
     font-size: 1rem;
@@ -41,10 +37,6 @@ table {
       width: 50px;
       padding: 0 12px;
       text-align: center;
-
-      img {
-        border-radius: 50%;
-      }
     }
 
     &-view {

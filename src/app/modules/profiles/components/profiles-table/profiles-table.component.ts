@@ -9,6 +9,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { Profile } from '../../models/profile';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profiles-table',
@@ -19,7 +20,7 @@ export class ProfilesTableComponent implements OnInit {
   @Input() profilesData: Profile[] = [];
   @Input() sortKey: keyof Profile = 'localid';
   @Output() sortEmit = new EventEmitter<keyof Profile>();
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild('paginator') paginator!: MatPaginator;
   dataSource: MatTableDataSource<Profile>;
   displayedColumns: string[] = [
     'profilePic',
@@ -31,13 +32,13 @@ export class ProfilesTableComponent implements OnInit {
     'modified',
     'view',
   ];
-  constructor() {
+  constructor(private router: Router) {
     this.dataSource = new MatTableDataSource(this.profilesData);
   }
 
   ngOnInit(): void {}
   ngOnChanges() {
-    if (this.profilesData) {
+    if (this.profilesData && this.paginator) {
       this.dataSource = new MatTableDataSource(this.profilesData);
       this.dataSource.paginator = this.paginator;
     }
@@ -54,5 +55,8 @@ export class ProfilesTableComponent implements OnInit {
 
   sort(key: keyof Profile) {
     this.sortEmit.emit(key);
+  }
+  navigateToProfile(id: string) {
+    this.router.navigate(['/profile/' + id]);
   }
 }

@@ -2,6 +2,7 @@ header {
   background: #03a9f4;
   color: #fff;
   padding: 42px 24px 16px;
+  min-height: 190px;
 
   h1 {
     padding: 16px 0;
@@ -44,13 +45,4 @@ header {
       cursor: pointer;
     }
   }
-}
-
-.table-container {
-  padding: 24px;
-}
-
-.loader {
-  margin: auto;
-  transform: translateY(200%);
 }

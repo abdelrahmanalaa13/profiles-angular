@@ -1,0 +1,7 @@
+<img [src]="imgSrc" (load)="isImgLoading = false" [hidden]="isImgLoading && imgSrc">
+<ng-container *ngIf="!isImgLoading && imgSrc; else partialLoaderEl"></ng-container>
+
+<ng-template #partialLoaderEl>
+  <mat-progress-spinner diameter="50" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>

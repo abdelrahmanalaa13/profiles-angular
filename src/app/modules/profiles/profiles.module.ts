@@ -3,23 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { ProfilesRoutingModule } from './profiles-routing.module';
 import { ProfilesComponent } from './components/profiles/profiles.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
 import { ProfilesTableComponent } from './components/profiles-table/profiles-table.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 @NgModule({
   declarations: [
     ProfilesComponent,
-    ProfilesTableComponent
+    ProfilesTableComponent,
+    ProfileDetailsComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     ProfilesRoutingModule,
-    MatIconModule,
-    MatTableModule,
-    MatPaginatorModule,
+    SharedModule,
   ]
 })
 export class ProfilesModule { }

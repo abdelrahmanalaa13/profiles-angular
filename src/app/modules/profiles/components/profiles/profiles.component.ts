@@ -12,6 +12,7 @@ export class ProfilesComponent implements OnInit {
   profilesList: Profile[] = [];
   sortBy: keyof Profile = 'localid';
   searchValue = '';
+  isLoaded = false;
   constructor(
     private profilesBackendService: ProfilesBackendService,
     private profilesService: ProfilesService
@@ -26,6 +27,7 @@ export class ProfilesComponent implements OnInit {
       debugger;
       if (profiles) {
         this.profilesList = profiles;
+        this.isLoaded = true;
       } else {
         this.profilesBackendService.getProfilesList().subscribe((profiles) => {
           this.profilesList = profiles;

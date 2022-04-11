@@ -1,19 +1,22 @@
-<header>
-  <h1>Profiles</h1>
-  <div class="search-container">
-    <div class="input-container">
-      <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
-      <input type="text" placeholder="Search Profiles" #search>
-    </div>
-    <div class="actions">
-      <button (click)="applyFilter(search.value)" type="button">
-        <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
-      </button>
-    </div>
-  </div>
-</header>
 
-<div class="table-container">
-  <app-profiles-table [profilesData]="profilesList" [sortKey]="sortBy" (sortEmit)="applySort($event)">
-  </app-profiles-table>
-</div>
+  <header>
+    <h1>Profiles</h1>
+    <div class="search-container">
+      <div class="input-container">
+        <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
+        <input type="text" placeholder="Search Profiles" #search>
+      </div>
+      <div class="actions">
+        <button (click)="applyFilter(search.value)" type="button">
+          <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div *ngIf="profilesList" class="table-container">
+    <app-profiles-table [profilesData]="profilesList" [sortKey]="sortBy" (sortEmit)="applySort($event)">
+    </app-profiles-table>
+  </div>
+
+
