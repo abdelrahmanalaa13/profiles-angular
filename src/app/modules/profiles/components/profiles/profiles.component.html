@@ -15,7 +15,8 @@
 </header>
 
 <div *ngIf="profilesList;else emptyData" class="table-container">
-  <app-profiles-table [isEmptySearch]="isEmptySearch" [profilesData]="profilesList" [sortKey]="sortBy" (sortEmit)="applySort($event)">
+  <app-profiles-table [isEmptySearch]="isEmptySearch" [profilesData]="profilesList" [sortKey]="sortBy"
+    (sortEmit)="applySort($event)">
   </app-profiles-table>
 </div>
 

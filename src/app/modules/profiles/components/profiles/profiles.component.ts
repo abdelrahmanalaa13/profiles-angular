@@ -13,7 +13,7 @@ export class ProfilesComponent implements OnInit {
   sortBy: keyof Profile = 'localid';
   searchValue = '';
   isLoaded = false;
-  isEmptySearch = true;
+  isEmptySearch = false;
   constructor(
     private profilesBackendService: ProfilesBackendService,
     private profilesService: ProfilesService
