@@ -1,0 +1,19 @@
+<header>
+  <h1 class="profile-title">
+    Profile:
+    <img class="profile-photo" [src]="profile?.photo" />
+    {{ profile?.first_name }} {{ profile?.last_name }}
+  </h1>
+  <div class="nav-content">
+      <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+        <a mat-tab-link active> Profile Detail </a>
+        <a mat-tab-link disabled>Profile ID's</a>
+        <a mat-tab-link disabled>Activity Timeline</a>
+      </nav>
+      <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+  </div>
+</header>
+<div class="profile-details">
+    <app-quick-facts class="mat-elevation-z2"></app-quick-facts>
+    <app-profile-details class="mat-elevation-z2"></app-profile-details>
+</div>

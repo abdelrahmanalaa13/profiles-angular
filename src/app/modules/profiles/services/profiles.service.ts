@@ -45,4 +45,12 @@ export class ProfilesService {
       }) || this.allProfilesSubject.value
     );
   }
+
+  getProfileById(id: number) {
+    return (
+      this.allProfilesSubject.value?.find((profile: Profile) => {
+        return profile.localid === id;
+      }) || null
+    );
+  }
 }
