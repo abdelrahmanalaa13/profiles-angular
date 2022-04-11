@@ -6,28 +6,41 @@ import { ProfilesService } from '../../services/profiles.service';
 @Component({
   selector: 'app-profiles',
   templateUrl: './profiles.component.html',
-  styleUrls: ['./profiles.component.scss']
+  styleUrls: ['./profiles.component.scss'],
 })
 export class ProfilesComponent implements OnInit {
   profilesList: Profile[] = [];
-  constructor(private profilesBackendService: ProfilesBackendService, private profilesService: ProfilesService) { }
+  sortBy: keyof Profile = 'localid';
+  searchValue = '';
+  constructor(
+    private profilesBackendService: ProfilesBackendService,
+    private profilesService: ProfilesService
+  ) {}
 
   ngOnInit(): void {
     this.checkLoadedProfiles();
   }
 
   checkLoadedProfiles() {
-    this.profilesService.getFilteredProfiles().subscribe(profiles => {
-      debugger
+    this.profilesService.getAllProfiles().subscribe((profiles) => {
+      debugger;
       if (profiles) {
         this.profilesList = profiles;
       } else {
-        this.profilesBackendService.getProfilesList().subscribe(profiles => {
+        this.profilesBackendService.getProfilesList().subscribe((profiles) => {
           this.profilesList = profiles;
           this.profilesService.setAllProfiles(profiles);
-          this.profilesService.setPageNumber(0);
         });
       }
     });
+  }
+  applyFilter(key: string) {
+    this.profilesList = [
+      ...(this.profilesService.filterProfiles(key?.trim()) || []),
+    ];
+  }
+  applySort(key: keyof Profile) {
+    this.sortBy = key;
+    this.profilesList = [...(this.profilesService.sortProfiles(key) || [])];
   }
 }

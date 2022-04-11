@@ -1,17 +1,58 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { Profile } from '../../models/profile';
-import { ProfilesBackendService } from '../../services/profiles-backend.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-profiles-table',
   templateUrl: './profiles-table.component.html',
-  styleUrls: ['./profiles-table.component.scss']
+  styleUrls: ['./profiles-table.component.scss'],
 })
 export class ProfilesTableComponent implements OnInit {
   @Input() profilesData: Profile[] = [];
-  displayedColumns: string[] = ['profilePic', 'id', 'email', 'name', 'phone', 'address', 'modified'];
-  constructor() { }
+  @Input() sortKey: keyof Profile = 'localid';
+  @Output() sortEmit = new EventEmitter<keyof Profile>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource: MatTableDataSource<Profile>;
+  displayedColumns: string[] = [
+    'profilePic',
+    'id',
+    'email',
+    'name',
+    'phone',
+    'address',
+    'modified',
+    'view',
+  ];
+  constructor() {
+    this.dataSource = new MatTableDataSource(this.profilesData);
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  ngOnChanges() {
+    if (this.profilesData) {
+      this.dataSource = new MatTableDataSource(this.profilesData);
+      this.dataSource.paginator = this.paginator;
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  sort(key: keyof Profile) {
+    this.sortEmit.emit(key);
   }
 }

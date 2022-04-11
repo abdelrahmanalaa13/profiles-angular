@@ -3,10 +3,10 @@
   <div class="search-container">
     <div class="input-container">
       <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
-      <input type="text" placeholder="Search Profiles" id="search">
+      <input type="text" placeholder="Search Profiles" #search>
     </div>
     <div class="actions">
-      <button type="submit" id="search-button">
+      <button (click)="applyFilter(search.value)" type="button">
         <mat-icon aria-hidden="false" aria-label="search icon">search</mat-icon>
       </button>
     </div>
@@ -14,5 +14,6 @@
 </header>
 
 <div class="table-container">
-  <app-profiles-table [profilesData]="profilesList"></app-profiles-table>
+  <app-profiles-table [profilesData]="profilesList" [sortKey]="sortBy" (sortEmit)="applySort($event)">
+  </app-profiles-table>
 </div>
