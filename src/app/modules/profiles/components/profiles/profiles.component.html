@@ -1,3 +1,4 @@
+<ng-container></ng-container>
 <header>
   <h1>Profiles</h1>
   <div class="search-container">
@@ -13,7 +14,19 @@
   </div>
 </header>
 
-<div *ngIf="profilesList" class="table-container">
-  <app-profiles-table [profilesData]="profilesList" [sortKey]="sortBy" (sortEmit)="applySort($event)">
+<div *ngIf="profilesList;else emptyData" class="table-container">
+  <app-profiles-table [isEmptySearch]="isEmptySearch" [profilesData]="profilesList" [sortKey]="sortBy" (sortEmit)="applySort($event)">
   </app-profiles-table>
 </div>
+
+<ng-template #emptyData>
+  <ng-container *ngIf="isLoaded;else notFound">
+    <div class="loading">
+      <mat-progress-spinner diameter="80" color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #notFound>
+  <app-not-found>Sorry but the profiles not found.</app-not-found>
+</ng-template>

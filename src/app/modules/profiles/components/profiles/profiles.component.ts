@@ -13,6 +13,7 @@ export class ProfilesComponent implements OnInit {
   sortBy: keyof Profile = 'localid';
   searchValue = '';
   isLoaded = false;
+  isEmptySearch = true;
   constructor(
     private profilesBackendService: ProfilesBackendService,
     private profilesService: ProfilesService
@@ -41,7 +42,9 @@ export class ProfilesComponent implements OnInit {
     this.profilesList = [
       ...(this.profilesService.filterProfiles(key?.trim()) || []),
     ];
+    this.isEmptySearch = this.profilesList.length === 0;
   }
+
   applySort(key: keyof Profile) {
     this.sortBy = key;
     this.profilesList = [...(this.profilesService.sortProfiles(key) || [])];

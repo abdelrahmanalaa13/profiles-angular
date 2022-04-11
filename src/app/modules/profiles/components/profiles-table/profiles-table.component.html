@@ -1,68 +1,77 @@
 <div class="mat-elevation-z8">
-  <table [dataSource]="dataSource" matSort mat-table class="mat-elevation-z8">
-    <!-- Profile-Pic Column -->
-    <ng-container matColumnDef="profilePic">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-icon aria-hidden="false" aria-label="CompareArrows icon">compare_arrows</mat-icon>
-      </th>
-      <td mat-cell *matCellDef="let element">
-        <app-image [imgSrc]="element.photo" [imgAlt]="'Profile Pic'"></app-image>
-      </td>
-    </ng-container>
+  <ng-container *ngIf="!isEmptySearch;else emptyTemplate">
 
-    <!-- Local ID -->
-    <ng-container matColumnDef="id">
-      <th [class.active]="sortKey === 'localid'" mat-header-cell *matHeaderCellDef> <button
-          (click)="sort('localid')">Local ID</button> </th>
-      <td mat-cell *matCellDef="let element"> {{element.localid}} </td>
-    </ng-container>
+    <table [dataSource]="dataSource" matSort mat-table class="mat-elevation-z8">
+      <!-- Profile-Pic Column -->
+      <ng-container matColumnDef="profilePic">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-icon aria-hidden="false" aria-label="CompareArrows icon">compare_arrows</mat-icon>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <app-image [imgSrc]="element.photo" [imgAlt]="'Profile Pic'"></app-image>
+        </td>
+      </ng-container>
 
-    <!-- E-mail Address -->
-    <ng-container matColumnDef="email">
-      <th [class.active]="sortKey === 'email'" mat-header-cell *matHeaderCellDef> <button (click)="sort('email')">E-mail
-          Address</button> </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
+      <!-- Local ID -->
+      <ng-container matColumnDef="id">
+        <th [class.active]="sortKey === 'localid'" mat-header-cell *matHeaderCellDef> <button
+            (click)="sort('localid')">Local ID</button> </th>
+        <td mat-cell *matCellDef="let element"> {{element.localid}} </td>
+      </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th [class.active]="sortKey === 'first_name'" mat-header-cell *matHeaderCellDef> <button
-          (click)="sort('first_name')">Name</button> </th>
-      <td mat-cell *matCellDef="let element"> {{element.first_name + ' '+ element.last_name}} </td>
-    </ng-container>
-    <!-- Phone Column -->
-    <ng-container matColumnDef="phone">
-      <th [class.active]="sortKey === 'phone'" mat-header-cell *matHeaderCellDef> <button (click)="sort('phone')">Phone
-          Number</button> </th>
-      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-    </ng-container>
+      <!-- E-mail Address -->
+      <ng-container matColumnDef="email">
+        <th [class.active]="sortKey === 'email'" mat-header-cell *matHeaderCellDef> <button
+            (click)="sort('email')">E-mail
+            Address</button> </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
 
-    <!-- Address Column -->
-    <ng-container matColumnDef="address">
-      <th [class.active]="sortKey === 'address'" mat-header-cell *matHeaderCellDef> <button
-          (click)="sort('address')">Address</button> </th>
-      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-    </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th [class.active]="sortKey === 'first_name'" mat-header-cell *matHeaderCellDef> <button
+            (click)="sort('first_name')">Name</button> </th>
+        <td mat-cell *matCellDef="let element"> {{element.first_name + ' '+ element.last_name}} </td>
+      </ng-container>
+      <!-- Phone Column -->
+      <ng-container matColumnDef="phone">
+        <th [class.active]="sortKey === 'phone'" mat-header-cell *matHeaderCellDef> <button
+            (click)="sort('phone')">Phone
+            Number</button> </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+      </ng-container>
 
-    <!-- Modified Date Column -->
-    <ng-container matColumnDef="modified">
-      <th [class.active]="sortKey === 'modified'" mat-header-cell *matHeaderCellDef> <button
-          (click)="sort('modified')">Modified</button> </th>
-      <td mat-cell *matCellDef="let element"> {{element.modified | date:'yyyy-MM-dd'}} </td>
-    </ng-container>
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+        <th [class.active]="sortKey === 'address'" mat-header-cell *matHeaderCellDef> <button
+            (click)="sort('address')">Address</button> </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
 
-    <!-- View btn Column -->
-    <ng-container matColumnDef="view">
-      <th mat-header-cell *matHeaderCellDef> View </th>
-      <td mat-cell *matCellDef="let element">
-        <button (click)="navigateToProfile(element.localid)">
-          <mat-icon aria-hidden="false" aria-label="CompareArrows icon">arrow_forward_ios</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      <!-- Modified Date Column -->
+      <ng-container matColumnDef="modified">
+        <th [class.active]="sortKey === 'modified'" mat-header-cell *matHeaderCellDef> <button
+            (click)="sort('modified')">Modified</button> </th>
+        <td mat-cell *matCellDef="let element"> {{element.modified | date:'yyyy-MM-dd'}} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <!-- View btn Column -->
+      <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef> View </th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="navigateToProfile(element.localid)">
+            <mat-icon aria-hidden="false" aria-label="CompareArrows icon">arrow_forward_ios</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
   <mat-paginator [pageSizeOptions]="[10, 25, 50 , 100]" aria-label="Select page of users" #paginator></mat-paginator>
 </div>
+
+<ng-template #emptyTemplate>
+  <app-not-found>Sorry there're no profiles that matches your search...</app-not-found>
+</ng-template>

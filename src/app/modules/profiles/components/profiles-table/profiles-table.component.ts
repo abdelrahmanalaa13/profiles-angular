@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
 export class ProfilesTableComponent implements OnInit {
   @Input() profilesData: Profile[] = [];
   @Input() sortKey: keyof Profile = 'localid';
+  @Input() isEmptySearch: boolean = false;
   @Output() sortEmit = new EventEmitter<keyof Profile>();
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource: MatTableDataSource<Profile>;
