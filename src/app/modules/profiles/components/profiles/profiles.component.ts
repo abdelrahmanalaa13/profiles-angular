@@ -20,6 +20,7 @@ export class ProfilesComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLoadedProfiles();
+    console.log(this.profilesList);
   }
 
   checkLoadedProfiles() {

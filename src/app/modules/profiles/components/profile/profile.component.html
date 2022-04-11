@@ -1,19 +1,35 @@
-<header>
-  <h1 class="profile-title">
-    Profile:
-    <img class="profile-photo" [src]="profile?.photo" />
-    {{ profile?.first_name }} {{ profile?.last_name }}
-  </h1>
-  <div class="nav-content">
-      <nav mat-tab-nav-bar [tabPanel]="tabPanel">
-        <a mat-tab-link active> Profile Detail </a>
-        <a mat-tab-link disabled>Profile ID's</a>
-        <a mat-tab-link disabled>Activity Timeline</a>
+<ng-container *ngIf="!isLoading &&!isLoadingError;else loading">
+
+  <header>
+    <h1 class="profile-title">
+      Profile:
+      <img class="profile-photo" [src]="profile?.photo" />
+      {{ profile?.first_name }} {{ profile?.last_name }}
+    </h1>
+    <div class="nav-content">
+      <nav>
+        <a class="active"> Profile Detail </a>
+        <a class="disabled">Profile ID's</a>
+        <a class="disabled">Activity Timeline</a>
       </nav>
       <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
-  </div>
-</header>
-<div class="profile-details">
+    </div>
+  </header>
+  <div class="profile-data">
     <app-quick-facts class="mat-elevation-z2"></app-quick-facts>
-    <app-profile-details class="mat-elevation-z2"></app-profile-details>
-</div>
+    <app-profile-details [profile]="profile"></app-profile-details>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <ng-container *ngIf="!isLoadingError;else profileNotFound">
+    <div class="loading">
+      <mat-progress-spinner diameter="80" color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #profileNotFound>
+  <app-not-found></app-not-found>
+</ng-template>

@@ -11,16 +11,29 @@ header {
     align-items: baseline;
   }
 
-  .nav-content {
+  nav {
+    display: flex;
     margin-left: 350px;
     width: calc(100% - 350px);
+    padding: 0;
     padding-inline-start: 32px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
     a {
       color: white;
       opacity: 1;
-      .mat-tab-disabled{
-        opacity: 0.5;
+      margin-inline-end: 32px;
+      font-size: 16px;
+      padding: 8px;
+      cursor: default;
+
+      &.active {
+        font-weight: 500;
+        border-bottom: 3px solid #fff;
+      }
+
+      &.disabled {
+        opacity: 0.8;
       }
     }
 
@@ -28,4 +41,15 @@ header {
       margin-left: 24px;
     }
   }
+}
+
+.profile-data {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+}
+
+.loading {
+  margin: 32px auto;
+  width: 80px;
 }

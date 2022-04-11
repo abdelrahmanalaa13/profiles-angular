@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-quick-facts',
   templateUrl: './quick-facts.component.html',
-  styleUrls: ['./quick-facts.component.scss']
+  styleUrls: ['./quick-facts.component.scss'],
 })
 export class QuickFactsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,1 +1,39 @@
-<p>profile-details works!</p>
+<div class="container mat-elevation-z2">
+  <div class="details">
+    <h2>Profile Detail</h2>
+    <div class="grid mat-elevation-z2">
+      <div class="row">
+        <span>Prefix</span>
+        <span>{{ profile?.prefix }}</span>
+      </div>
+      <div class="row">
+        <span>First Name</span>
+        <span>{{profile?.first_name}}</span>
+      </div>
+      <div class="row">
+        <span>Last Name</span>
+        <span>{{profile?.last_name}}</span>
+      </div>
+      <div class="row">
+        <span>Suffix</span>
+        <span>{{profile?.suffix}}</span>
+      </div>
+      <div class="row">
+        <span>Loyalty Member ID</span>
+        <span>{{profile?.loyalty_member_id}}</span>
+      </div>
+      <div class="row">
+        <span>Phone</span>
+        <span>{{profile?.phone}}</span>
+      </div>
+      <div class="row">
+        <span>Address</span>
+        <span>{{profile?.address}}</span>
+      </div>
+      <div class="row">
+        <span>Birthday</span>
+        <span>{{profile?.birthdate | date:'yyyy-MM-dd'}}</span>
+      </div>
+    </div>
+  </div>
+</div>

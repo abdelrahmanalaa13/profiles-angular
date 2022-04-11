@@ -1,0 +1,39 @@
+.container {
+  margin-inline-start: 32px;
+  margin-top: 24px;
+  padding: 12px;
+  width: 90%;
+  border-radius: 4px;
+  height: 480px;
+
+  .details {
+    padding: 12px;
+    background-color: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    height: 100%;
+
+    .grid {
+      display: grid;
+      row-gap: 8px;
+      background-color: #fff;
+      padding: 12px;
+      border-radius: 4px;
+
+      .row {
+        display: grid;
+        grid-template-columns: 250px 250px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 4px;
+
+        span:nth-child(2) {
+          font-weight: 500;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

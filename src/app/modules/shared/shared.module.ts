@@ -4,22 +4,18 @@ import { ImageComponent } from './components/image/image.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatTabsModule} from '@angular/material/tabs';
-
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [
-    ImageComponent,
-  ],
+  declarations: [ImageComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatTabsModule
+    MatProgressSpinnerModule
   ],
   exports: [
     ImageComponent,
@@ -27,7 +23,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatTabsModule
-  ]
+    MatTabsModule,
+    NotFoundComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

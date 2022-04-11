@@ -11,6 +11,8 @@ import { ProfilesService } from '../../services/profiles.service';
 })
 export class ProfileComponent implements OnInit {
   profile: Profile | null = null;
+  isLoadingError = false;
+  isLoading = true;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -27,16 +29,22 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {}
   checkCurrentProfile(id: number) {
     this.profile = this.profilesService.getProfileById(id);
-    if (!this.profile) {
-      if(!this.profilesService.allProfilesSubject.value) {
-        this.ProfilesBackendService.getProfilesList().subscribe((profiles) => {
-          this.profilesService.setAllProfiles(profiles);
-          this.checkCurrentProfile(id);
-        });
-      } else {
-        console.log('lol');
-        
-      }
+    if (this.profile) {
+      this.isLoading = false;
+    } else if (!this.profilesService.allProfilesSubject.value) {
+      this.ProfilesBackendService.getProfilesList().subscribe((profiles) => {
+        this.profilesService.setAllProfiles(profiles);
+        this.checkCurrentProfile(id);
+      });
+    } else {
+      this.isLoadingError = true;
+      this.isLoading = false;
+      setTimeout(() => {
+        this.goToHome();
+      }, 3000);
     }
+  }
+  goToHome() {
+    this.router.navigate(['/']);
   }
 }

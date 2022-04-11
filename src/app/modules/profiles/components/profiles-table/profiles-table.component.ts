@@ -38,9 +38,11 @@ export class ProfilesTableComponent implements OnInit {
 
   ngOnInit(): void {}
   ngOnChanges() {
-    if (this.profilesData && this.paginator) {
-      this.dataSource = new MatTableDataSource(this.profilesData);
-      this.dataSource.paginator = this.paginator;
+    if (this.profilesData) {
+      setTimeout(() => {
+        this.dataSource = new MatTableDataSource(this.profilesData);
+        this.dataSource.paginator = this.paginator;
+      });
     }
   }
 
