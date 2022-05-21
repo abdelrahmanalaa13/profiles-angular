@@ -1,6 +1,6 @@
 # ProfilesAngular
 
-Simple Angular (version 13.3.2.) web application that displays the profiles of users that returned from the server side
+Simple Angular (version 13.3.2) web application that displays the profiles of users that returned from the server side
 
 # LIVE PREVIEW
 - https://profiles-angular.netlify.app/
